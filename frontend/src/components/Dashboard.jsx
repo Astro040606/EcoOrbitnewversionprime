@@ -18,22 +18,22 @@ const Dashboard = ({ emissions, anomalies }) => {
     }
   }, [emissions, selectedRegion]);
 
-  useEffect(() => {
-    if (selectedRegion) {
-      axios.get(`import.meta.env.VITE_API_URL/api/forecast/${selectedRegion}`)
-        .then(res => {
-          setForecast(res.data.forecasts || []);
-          setInsights(res.data.insights || []);
-        })
-        .catch(err => console.error("Forecast error:", err));
-        
-      axios.get(`import.meta.env.VITE_API_URL/api/behavior/${selectedRegion}`)
-        .then(res => {
-          setBehaviorInsights(res.data.insights || []);
-        })
-        .catch(err => console.error("Behavior error:", err));
-    }
-  }, [selectedRegion, emissions]);
+ useEffect(() => {
+  if (selectedRegion) {
+    axios.get(`${import.meta.env.VITE_API_URL}/api/forecast/${selectedRegion}`)
+      .then(res => {
+        setForecast(res.data.forecasts || []);
+        setInsights(res.data.insights || []);
+      })
+      .catch(err => console.error("Forecast error:", err));
+      
+    axios.get(`${import.meta.env.VITE_API_URL}/api/behavior/${selectedRegion}`)
+      .then(res => {
+        setBehaviorInsights(res.data.insights || []);
+      })
+      .catch(err => console.error("Behavior error:", err));
+  }
+}, [selectedRegion, emissions]);
 
   // Prepare chart data (historical + forecast)
   const regionEmissions = emissions.filter(e => e.region === selectedRegion);
