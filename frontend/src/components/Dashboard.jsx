@@ -20,14 +20,14 @@ const Dashboard = ({ emissions, anomalies }) => {
 
   useEffect(() => {
     if (selectedRegion) {
-      axios.get(`http://localhost:8000/api/forecast/${selectedRegion}`)
+      axios.get(`import.meta.env.VITE_API_URL/api/forecast/${selectedRegion}`)
         .then(res => {
           setForecast(res.data.forecasts || []);
           setInsights(res.data.insights || []);
         })
         .catch(err => console.error("Forecast error:", err));
         
-      axios.get(`http://localhost:8000/api/behavior/${selectedRegion}`)
+      axios.get(`import.meta.env.VITE_API_URL/api/behavior/${selectedRegion}`)
         .then(res => {
           setBehaviorInsights(res.data.insights || []);
         })

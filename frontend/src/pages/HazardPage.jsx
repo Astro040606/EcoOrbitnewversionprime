@@ -5,7 +5,7 @@ import L from 'leaflet';
 import HazardBadge from '../components/HazardBadge';
 import { useAppData } from '../context/AppDataContext';
 
-const API = 'http://localhost:8000';
+const API = import.meta.env.VITE_API_URL;
 
 const LEVEL_CONFIG = {
   LOW:    { label: 'PAST XAVF',   color: '#22c55e', glow: '0 0 40px rgba(34,197,94,0.3)',    bg: 'rgba(34,197,94,0.08)',   border: 'rgba(34,197,94,0.3)',   gauge: '#22c55e', pct: 18  },
